@@ -34,10 +34,10 @@ function postUserLoging(request, response) {
   connection.query(sql, params, (err,res)=>{
     if(err){
       console.log(err);
-      respuesta = {error:true, codigo:200, mensaje:'NO logeado', data_user:res}
+      respuesta = {error:true, codigo:200, mensaje:'NO logueado', data_user:res}
     } else {
       if(res.length > 0){
-        respuesta = {error:false, codigo:200, mensaje:'logeado', data_user:res}
+        respuesta = {error:false, codigo:200, mensaje:'logueado', data_user:res[0]}
       } else {
         console.log('Los datos proporcionados no coinciden con ningún usuario en la base de datos.')
         respuesta = {error:true, codigo:200, mensaje:'NO logeado', data_user:res}
