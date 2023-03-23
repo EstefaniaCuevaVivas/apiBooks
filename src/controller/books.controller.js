@@ -87,7 +87,7 @@ function postBook(request, response)
 function putBook(request, response)
 {
 
- let params=[request.body.title,request.body.type,request.body.author,request.body.price,request.body.photo,request.body.id_book] 
+ let params=[request.body.title,request.body.type,request.body.author,request.body.price,request.body.photo_libro,request.body.id_book] 
     let sql = `UPDATE book SET title = ?,type =?,author=?,price =?,photo_libro =? WHERE id_book = ?`
     connection.query(sql,params,(err,resp)=>
     {

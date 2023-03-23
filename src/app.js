@@ -3,6 +3,7 @@ const cors = require("cors");
 const logingRouters = require("./routers/loging.routers");
 const registrerRouters = require("./routers/registrer.routers");
 const booksRouters = require("./routers/books.routers")
+const userRouters =require("./routers/user.routers")
 const errorHandling = require("./error/errorHandling");
 
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(logingRouters);
 app.use(registrerRouters);
 app.use(booksRouters);
+app.use(userRouters);
 
 app.use(function(req,res,next)
 {
