@@ -58,16 +58,18 @@ function getBook(request,response){
 function postBook(request, response)
  {
 
-  let sql="INSERT INTO book (title,type,author,price,photo_libro,id_book)" + 
-  "VAlUES ('" + request.body.title + "','"+ 
-                request.body.type+ "', '" + 
-                request.body.author + "','" + 
-                request.body.price + "', '" + 
-                request.body.photo_libro + "', '" +
-                request.body.id_book + "')"
+  let params = [request.body.title,
+                request.body.type,
+                request.body.author,
+                request.body.price,
+                request.body.photo_libro,
+                request.body.id_user]
+
+  let sql=`INSERT INTO book (title,type,author,price,photo_libro,id_user)
+          VAlUES (?,?,?,?,?,?)`              
   
  console.log(sql);
-  connection.query(sql,(err,res)=>{
+  connection.query(sql,params,(err,res)=>{
     if(err){
       console.log(err);
       respuesta = {error:true, codigo:200, mensaje:'libro no añadido', data:res}
@@ -76,7 +78,7 @@ function postBook(request, response)
         respuesta = {error:false, codigo:200, mensaje:'libro añadido', data:res}
       } else {
         console.log('Los datos proporcionados han sido añadidos.')
-        respuesta = {error:true, codigo:200, mensaje:'libro añadido', data:res}
+        respuesta = {error:false, codigo:200, mensaje:'libro añadido', data:res}
       }
       console.log(respuesta);
     }
@@ -99,7 +101,7 @@ function putBook(request, response)
         respuesta = {error:false, codigo:200, mensaje:'libro actualizado', data:resp}
       } else {
         console.log('Los datos proporcionados han sido actualizados.')
-        respuesta = {error:true, codigo:200, mensaje:'libro actualizado', data:resp}
+        respuesta = {error:false, codigo:200, mensaje:'libro actualizado', data:resp}
       }
       console.log(respuesta);
     }
